@@ -1,0 +1,30 @@
+body {
+  background: url("../assets/background.jpeg");
+  background-size: 100%;
+  background-position: 0px -950px;
+
+}
+
+.navbar-brand>img {
+  margin: -15%;
+}
+
+.header {
+  background: #f0eceb;
+  height: 4.5em;
+}
+
+.nav-pills>li>a {
+  line-height: 3em;
+  color: #283018;
+}
+
+.container.body {
+  margin-top: 12%;
+}
+
+.jumbotron {
+  background-color: rgba(240, 236, 235, 0);
+  color: #f0eceb;
+  font-family: 'Playfair Display', serif;
+}
