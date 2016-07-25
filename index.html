@@ -1,39 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="WardrobeApp">
 <head>
   <meta charset="UTF-8">
   <title>minMAX: Optimize Your Life</title>
   <link href='https://fonts.googleapis.com/css?family=Montserrat:700,400' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700,400' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
+<body ng-controller="NavigationController as nav">
 
   <div class="container-fluid header">
-    <a class="navbar-brand" href="#">
-      <img alt="Brand" src="assets/hanger.png" height="45">
+    <a class="navbar-brand" href="#/">
+      <img alt="Brand" src="assets/hanger.png" height="66">
     </a>
     <ul class="nav nav-pills pull-right">
-      <li role="presentation"><a href="#">Home</a></li>
-      <li role="presentation"><a href="#">About</a></li>
-      <li role="presentation"><a href="#">Profile</a></li>
+      <li role="presentation"><a href="#/">Home</a></li>
+      <li role="presentation"><a href="#/about">About</a></li>
+      <li role="presentation"><a href="#/profile">Dashboard</a></li>
       <li role="presentation" class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-        Login <span class="caret"></span>
-        </a>
+        <a>Login <span class="green caret"></span></a>
+        <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        Login <span class="caret green"></span>
+        </a> -->
         <ul class="dropdown-menu">
         </ul>
       </li>
     </ul>
   </div>
 
-  <div class="container body">
-    <div class="jumbotron pull-right">
-      <h1>Minimize your wardrobe.</h1>
-      <h1>Maximize your energy.</h1>
-      <h1><b>Optimize your life.</b></h1>
-    </div>
+  <div ng-view="" class="container-fluid">
   </div>
 
   <div class="container-fluid footer">
@@ -45,5 +41,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-route.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

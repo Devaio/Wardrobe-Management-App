@@ -1,0 +1,135 @@
+/*Nav bar*/
+
+.navbar-brand>img {
+  margin: -25%;
+  margin-left: 10%;
+}
+
+.header {
+  border-bottom: 1px solid #283018;
+  background: #f0eceb;
+  height: 5%;
+}
+
+.nav-pills>li>a {
+  line-height: 3em;
+  color: #283018;
+}
+
+.nav-pills>li>a:hover, .nav-pills>li>a:focus  {
+  line-height: 3em;
+  color: #283018;
+  background-color: white;
+}
+
+.nav-pills>li.dropdown:hover, .nav-pills>li.dropdown:focus {
+  background-color: white;
+}
+
+
+/*Body*/
+
+body {
+  background-color: #f0eceb;
+}
+
+div.container-fluid {
+  padding: 0;
+}
+
+
+div.jumbotron {
+  margin-top: 12%;
+  background-color: rgba(0, 0, 0, 0);
+  color: #f0eceb;
+  font-family: 'Playfair Display', serif;
+  text-shadow: 2px 2px #283018;
+}
+
+.footer {
+  border-top: 1px solid #283018;
+  background: #f0eceb;
+  height: 7em;
+}
+
+.green {
+  color: #729f98;
+}
+
+.yellow {
+  color: #aa863a;
+}
+
+
+/*Main page*/
+
+div.container-fluid.main-view {
+  background: url("../assets/background2.png") no-repeat right top fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  height: 55em;
+}
+
+
+/*About page*/
+
+div.container-fluid.about-view {
+  background: url("../assets/tailor.jpeg") no-repeat right top fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  height: 55em;
+}
+
+/*Profile page*/
+
+div.container-fluid.profile-view {
+  background: url("../assets/clothesline.jpeg") no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  height: 55em;
+}
+
+div.container-fluid.dash-header {
+  background-color: #283018;
+  border-bottom: 1px solid #283018;
+  height: 11%;
+  opacity: .75;
+}
+
+div.container.dash-body {
+  /*border-left: 1px solid #283018;
+  border-right: 1px solid #283018;*/
+  height: 89%;
+}
+
+div.dash-sub-header {
+  margin: auto;
+  font-size: 20px;
+  color: #f0eceb;
+  text-align: center;
+  line-height: 4em;
+}
+
+.dash-nav {
+  color: #f0eceb;
+}
+
+.dash-nav:hover  {
+  color: #729f98;
+  text-decoration: none;
+}
+
+.yellow.highlight:hover {
+  text-decoration: none;
+  color: #729f98;
+}
+
+
+
+/*
+* {
+  border: 1px solid gold;
+}*/
