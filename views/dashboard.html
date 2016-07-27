@@ -3,6 +3,7 @@
     <div class="container-fluid dash-header">
         <div class="container row dash-sub-header">
 
+            <!-- Sub-header navigation -->
             <div class="col-md-3">
                 <a ng-click="dash.openWardrobe()" class="dash-nav">Wardrobe</a>
             </div>
@@ -52,7 +53,7 @@
                                 </div>
 
                                 <div>
-                                    <label class="data">Times worn this cycle:</label><span> {{dash.activeItem.wearsThisCycle}}</span>
+                                    <label class="data">Times worn this laundry cycle:</label><span> {{dash.activeItem.wearsThisCycle}}</span>
                                 </div>
 
                                 <div>
@@ -68,7 +69,7 @@
 
 
                             <button ng-hide="dash.showRetire" class="btn btn-md btn-default cancel-retire" type="button" ng-click="dash.toggleRetire()">Cancel</button>
-                            <button ng-hide="dash.showRetire" class="btn btn-md btn-danger remove-garment" type="button">Delete Item</button>
+                            <button ng-hide="dash.showRetire" ng-click="dash.removeItem()"class="btn btn-md btn-danger remove-garment" type="button" data-toggle="modal" data-target="#garmentData">Delete Item</button>
                         </div>
 
                     </div>
@@ -88,11 +89,14 @@
                         </div>
 
                         <div class="modal-body">
+
+                            <!-- New Garment Submission Form -->
                             <form ng-submit="dash.addNewGarment()">
                                 <div class="form-group">
                                     <label>Name</label>
                                     <input ng-model="dash.newGarment.name" class="form-control" placeholder="Green Flannel Shirt">
                                 </div>
+
                                 <div class="radio">
                                     <label>
                                         <input ng-model="dash.newGarment.type" type="radio" name="optradio" value="top"> Top
@@ -100,9 +104,10 @@
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input ng-model="dash.newGarment.bottom" type="radio" name="optradio" value="bottom"> Bottom
+                                        <input ng-model="dash.newGarment.type" type="radio" name="optradio" value="bottom"> Bottom
                                     </label>
                                 </div>
+
                                 <div class="form-group">
                                     <label>Price</label>
                                     <input ng-model="dash.newGarment.price" class="form-control" placeholder="30">
@@ -116,9 +121,9 @@
                                     <input ng-model="dash.newGarment.wearsPerCycle" class="form-control" placeholder="3">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Add Photo</label>
+                                    <label>Add Photo</label>
                                     <input ng-model="dash.newGarment.photo" type="file"> -or-
-                                    <label for="exampleInputFile">Paste HTML</label>
+                                    <label class="html-input">Paste HTML</label>
                                     <input ng-model="dash.newGarment.photo" class="form-control" placeholder="htps://www.google.com" />
                                 </div>
 
@@ -141,16 +146,25 @@
 
         </div>
 
+
+        <!-- TO BE COMPLETED AFTER MIDTERM -->
         <div class="container module" ng-if="dash.calendarDisplay">
 
         </div>
 
+        <!-- TO BE COMPLETED AFTER MIDTERM -->
         <div class="container module" ng-if="dash.weatherDisplay">
 
         </div>
 
-        <div class="container module" ng-if="dash.getOutfitDisplay">
 
+
+
+        <div class="container module" ng-if="dash.getOutfitDisplay">
+            <div class="col-md-3 col-md-offset-1 daily-outfit">
+                <img class="outfit-view" src={{dash.outfitTop.photo}} height="350" width="350"/>
+                <img class="outfit-view" src={{dash.outfitBottom.photo}} height="350" width="350"/>
+            </div>
         </div>
 
 

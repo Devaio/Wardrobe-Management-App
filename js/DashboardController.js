@@ -4,9 +4,13 @@ angular.module("WardrobeApp")
 function dashControl(GarmentFactory) {
 	console.log("DashboardController loaded")
 	var dash = this
+
+	// TO BE REMOVED AFTER DEVELOPMENT
 	window.dash = dash
 	dash.photos = garmentFactory.photos
 	dash.garments = GarmentFactory.garments
+	dash.garmentTops = GarmentFactory.garmentTops
+	dash.garmentBottoms = GarmentFactory.garmentBottoms
 	dash.wardrobeDisplay = true
 
 	// Dashboard navigation
@@ -17,6 +21,9 @@ function dashControl(GarmentFactory) {
 		dash.getOutfitDisplay = false
 	}
 
+
+	// TO BE COMPLETED AFTER MIDTERM
+	// for now - dummy data generator
 	dash.openCalendar = function() {
 		// dash.wardrobeDisplay = false
 		// dash.calendarDisplay = true
@@ -91,6 +98,8 @@ function dashControl(GarmentFactory) {
 		})
 	}
 
+
+	// TO BE IMPLEMENTED
 	dash.openWeather = function() {
 		dash.wardrobeDisplay = false
 		dash.calendarDisplay = false
@@ -98,12 +107,23 @@ function dashControl(GarmentFactory) {
 		dash.getOutfitDisplay = false
 	}
 
+	// Assigns daily outfit
 	dash.openGetOutfit = function() {
 		dash.wardrobeDisplay = false
 		dash.calendarDisplay = false
 		dash.weatherDisplay = false
 		dash.getOutfitDisplay = true
+
+
+		dash.outfitTop = dash.garmentTops[Math.floor(Math.random()*dash.garmentTops.length)]
+		dash.outfitBottom = dash.garmentBottoms[Math.floor(Math.random()*dash.garmentBottoms.length)]
+
+
+
+
+
 	}
+
 
 	// Add new garment
 	dash.addNewGarment = function(){
@@ -117,13 +137,25 @@ function dashControl(GarmentFactory) {
 		dash.newGarment.photo = null
 	}
 
+	// Activates when garment photo is clicked
 	dash.setActiveItem = function(garment){
 		dash.activeItem = garment
 		dash.showRetire = true
 	}
 
+	// Toggles warn/danger buttons inside garment data modal
 	dash.toggleRetire = function(){
 		dash.showRetire = !dash.showRetire
+	}
+
+	// Removes garment from wardrobe
+	dash.removeItem = function(){
+		dash.garments.splice(dash.garments.indexOf(dash.activeItem), 1)
+		if (dash.garmentTops.indexOf(dash.activeItem) != -1) {
+			dash.garmentTops.splice(dash.garmentTops.indexOf(dash.activeItem), 1)
+		} else {
+			dash.garmentBottoms.splice(dash.garmentBottoms.indexOf(dash.activeItem), 1)
+		}
 	}
 
 }

@@ -93,8 +93,6 @@ div.container-fluid.about-view {
 /*Dashboard page*/
 
 div.container-fluid.dash-view {
-    /*background: url("../assets/clothesline.jpeg") no-repeat center center fixed;
-  background-size: cover;*/
     background: white;
     margin: 0;
     padding: 0;
@@ -131,14 +129,14 @@ div.dash-sub-header {
 }
 div.container.module {
     margin-top: 3%;
-    height: 57em;
+    height: 58em;
     background: #f0eceb;
     overflow: auto;
 
 }
 img.garment {
     border: 5px solid #283018;
-    margin: 2% 0% 0% 2.33%;
+    margin: 2.75% 0% 0% 2.33%;
     display: inline-block;
     height: 8em;
     width: 8em;
@@ -158,13 +156,16 @@ div.module>ul {
 button.add-garment {
     border: 5px solid #283018;
     background: white;
-    margin: 1.75% 0% 0% 2.33%;
+    margin: 2.75% 0% 0% 2.33%;
     padding: 0;
     display: inline-block;
     height: 6.25em;
     width: 6.25em;
     border-radius: 2px;
 }
+
+/*Modal styles*/
+
 div.module>button.add-garment:active, div.module>button.add-garment:focus {
     outline: none;
 }
@@ -198,12 +199,29 @@ div.modal-footer {
 div.modal-footer>button.remove-garment {
     position: absolute;
     right: 3%;
-    bottom: 5%;
+    bottom: 6%;
 }
 div.modal-footer>button.cancel-retire {
     position: absolute;
     right: 20%;
-    bottom: 5%;
+    bottom: 6%;
+}
+
+img.outfit-view {
+    border: 7px solid black;
+    background: white;
+    margin-top: 15%;
+    display:block;
+}
+
+
+/*Form layout*/
+div.radio {
+    margin-left: 3%;
+}
+
+label.html-input {
+    margin: 1%;
 }
 
 
