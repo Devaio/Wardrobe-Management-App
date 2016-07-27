@@ -129,6 +129,7 @@ div.dash-sub-header {
 }
 div.container.module {
     margin-top: 3%;
+    padding: 15px;
     height: 58em;
     background: #f0eceb;
     overflow: auto;
@@ -136,7 +137,7 @@ div.container.module {
 }
 img.garment {
     border: 5px solid #283018;
-    margin: 2.75% 0% 0% 2.33%;
+    margin: 2% 0% 0% 2.5%;
     display: inline-block;
     height: 8em;
     width: 8em;
@@ -156,7 +157,7 @@ div.module>ul {
 button.add-garment {
     border: 5px solid #283018;
     background: white;
-    margin: 2.75% 0% 0% 2.33%;
+    margin: 2% 0% 0% 2.5%;
     padding: 0;
     display: inline-block;
     height: 6.25em;
@@ -208,7 +209,7 @@ div.modal-footer>button.cancel-retire {
 }
 
 img.outfit-view {
-    border: 7px solid black;
+    border: 7px solid #283018;
     background: white;
     margin-top: 15%;
     display:block;
@@ -224,8 +225,65 @@ label.html-input {
     margin: 1%;
 }
 
+iframe {
+    margin: 0% 0% 0% .5%;
+    border: 3px solid #283018;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+}
 
-/*
-* {
-  border: 1px solid gold;
-}*/
+div.module>div.widget-top {
+    height: 31em;
+    margin: 1% 0% 0% 0%;
+    overflow: auto;
+}
+
+div.module>div.widget-bottom {
+    height: 22em;
+    margin-top: 2%;
+}
+
+div.widget-wardrobe {
+    height: 100%;
+    border: 3px solid #283018;
+    overflow: auto;
+    border-radius: 3px;
+}
+
+div.widget-outfit {
+    height: 100%;
+    border: 3px solid #283018;
+    overflow: auto;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+div.widget-weather {
+    margin: 0% 0% 0% .5%;
+    border: 3px solid #283018;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    background: white;
+}
+
+img.outfit-view {
+    border: 5px solid #283018;
+    margin: 7% 0% 0% 11%;
+    display: block;
+    height: 13.3em;
+    width: 13.3em;
+    border-radius: 2px;
+}
+
+
+img.weather-img {
+    margin: 7% 0% 0% 5%;
+    width: 90%;
+    height: 80%;
+}
+
+button.outfit-buttons {
+    margin: 0 auto;
+}

@@ -1,181 +1,162 @@
 <div ng-controller="DashboardController as dash" class="container-fluid dash-view">
 
-    <div class="container-fluid dash-header">
-        <div class="container row dash-sub-header">
 
-            <!-- Sub-header navigation -->
-            <div class="col-md-3">
-                <a ng-click="dash.openWardrobe()" class="dash-nav">Wardrobe</a>
+
+    <!-- Populate with photos -->
+    <div class="container module">
+        <div class="widget-top col-md-9">
+            <div class="widget-wardrobe">
+                <img class="garment" ng-repeat="garment in dash.garments track by $index" ng-click="dash.setActiveItem(garment)" src="{{garment.photo}}" data-toggle="modal" data-target="#garmentData" />
+
+                <button class="btn btn-lg add-garment glyphicon glyphicon-plus" data-toggle="modal" data-target="#myModal"></button>
             </div>
-            <div class="col-md-3">
-                <a ng-click="dash.openCalendar()" class="dash-nav">Calendar</a>
-            </div>
-            <div class="col-md-3">
-                <a ng-click="dash.openWeather()" class="dash-nav">Weather</a>
-            </div>
-            <div class="col-md-3">
-                <a ng-click="dash.openGetOutfit()" class="dash-nav yellow highlight">Get Outfit</a>
-            </div>
+
 
         </div>
 
-        <!-- Populate with photos -->
-        <div class="container module" ng-if="dash.wardrobeDisplay">
+        <div class="widget-top col-md-3">
+            <div ng-click="dash.openOutfit()" class="widget-outfit" data-toggle="modal" data-target=".outfit-modal">
+                <div>
+                    <img class="outfit-view" src="{{dash.outfitTop.photo}}" />
+                    <img class="outfit-view" src="{{dash.outfitBottom.photo}}" />
+                </div>
+            </div>
+        </div>
 
-            <!-- NG-REPEAT -->
-            <img class="garment" ng-repeat="garment in dash.garments track by $index" ng-click="dash.setActiveItem(garment)" ng-src={{garment.photo}} data-toggle="modal" data-target="#garmentData" />
+        <div class="widget-bottom col-md-7">
+            <iframe src="https://calendar.google.com/calendar/embed?src=0ffohj0pid08deiej8lav1vkmg%40group.calendar.google.com&ctz=America/Denver" scrolling="no"></iframe>
+        </div>
 
-            <button class="btn btn-lg add-garment glyphicon glyphicon-plus" data-toggle="modal" data-target="#myModal"></button>
+        <div class="widget-bottom col-md-5">
+            <div ng-click="dash.openWeather()" class="widget-weather">
+                <img src="assets/weather.png" class="weather-img" />
+            </div>
+        </div>
 
 
-            <!-- MODAL for garment ANALYTICS -->
-            <div class="modal fade" id="garmentData" tabindex="-1" role="dialog" aria-labelledby="garmentData">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
 
-                        <div class="modal-header data">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="garmentData">{{dash.activeItem.name}}</h4>
+
+
+
+
+
+        <!-- MODAL for garment ANALYTICS -->
+        <div class="modal fade" id="garmentData" tabindex="-1" role="dialog" aria-labelledby="garmentData">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header data">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="garmentData">{{dash.activeItem.name}}</h4>
+                    </div>
+
+                    <div>
+                        <div class="garment-photo col-md-5">
+                            <img ng-src={{dash.activeItem.photo}} height="200" width="200" />
                         </div>
 
-                        <div>
-                            <div class="garment-photo col-md-5">
-                                <img ng-src={{dash.activeItem.photo}} height="200" width="200"/>
+                        <div class=" modal-body col-md-7">
+                            <div>
+                                <label class="data">Price:</label><span> ${{dash.activeItem.price}}</span>
                             </div>
 
-                            <div class=" modal-body col-md-7">
-                                <div>
-                                    <label class="data">Price:</label><span> ${{dash.activeItem.price}}</span>
-                                </div>
+                            <div>
+                                <label class="data">Price per wear:</label><span> ${{dash.activeItem.pricePerWear.toFixed(2)}}</span>
+                            </div>
 
-                                <div>
-                                    <label class="data">Price per wear:</label><span> ${{dash.activeItem.pricePerWear.toFixed(2)}}</span>
-                                </div>
+                            <div>
+                                <label class="data">Times worn this laundry cycle:</label><span> {{dash.activeItem.wearsThisCycle}}</span>
+                            </div>
 
-                                <div>
-                                    <label class="data">Times worn this laundry cycle:</label><span> {{dash.activeItem.wearsThisCycle}}</span>
-                                </div>
+                            <div>
+                                <label class="data">Total times worn:</label><span> {{dash.activeItem.totalWears}}</span>
+                            </div>
 
-                                <div>
-                                    <label class="data">Total times worn:</label><span> {{dash.activeItem.totalWears}}</span>
-                                </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button ng-show="dash.showRetire" class="btn btn-md btn-warning remove-garment" type="button" ng-click="dash.toggleRetire()">Retire Me</button>
+
+
+                        <button ng-hide="dash.showRetire" class="btn btn-md btn-default cancel-retire" type="button" ng-click="dash.toggleRetire()">Cancel</button>
+                        <button ng-hide="dash.showRetire" ng-click="dash.removeItem()" class="btn btn-md btn-danger remove-garment" type="button" data-toggle="modal" data-target="#garmentData">Delete Item</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- MODAL form to add garments -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add Garment</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <!-- New Garment Submission Form -->
+                        <form ng-submit="dash.addNewGarment()">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input ng-model="dash.newGarment.name" class="form-control" placeholder="Green Flannel Shirt">
+                            </div>
+
+                            <div class="radio">
+                                <label>
+                                    <input ng-model="dash.newGarment.type" type="radio" name="optradio" value="top"> Top
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input ng-model="dash.newGarment.type" type="radio" name="optradio" value="bottom"> Bottom
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input ng-model="dash.newGarment.price" class="form-control" placeholder="30">
+                            </div>
+                            <div class="form-group">
+                                <label>Quantity</label>
+                                <input ng-model="dash.newGarment.quantity" class="form-control" placeholder="1">
+                            </div>
+                            <div class="form-group">
+                                <label>Wears Per Laundry Cycle</label>
+                                <input ng-model="dash.newGarment.wearsPerCycle" class="form-control" placeholder="3">
+                            </div>
+                            <div class="form-group">
+                                <label>Add Photo</label>
+                                <input ng-model="dash.newGarment.photo" type="file"> -or-
+                                <label class="html-input">Paste HTML</label>
+                                <input ng-model="dash.newGarment.photo" class="form-control" placeholder="htps://www.google.com" />
+                            </div>
+
+                            <button type="submit" class="modal-btn btn btn-success pull-right" data-toggle="modal" data-target="#myModal">Add item</button>
+                            <button type="button" class="modal-btn btn btn-default pull-right" data-dismiss="modal">Cancel</button>
+
+
+                            <div class="modal-footer">
 
                             </div>
-                        </div>
-
-                        <div class="modal-footer">
-
-                            <button ng-show="dash.showRetire" class="btn btn-md btn-warning remove-garment" type="button" ng-click="dash.toggleRetire()">Retire Me</button>
-
-
-                            <button ng-hide="dash.showRetire" class="btn btn-md btn-default cancel-retire" type="button" ng-click="dash.toggleRetire()">Cancel</button>
-                            <button ng-hide="dash.showRetire" ng-click="dash.removeItem()"class="btn btn-md btn-danger remove-garment" type="button" data-toggle="modal" data-target="#garmentData">Delete Item</button>
-                        </div>
-
+                        </form>
                     </div>
                 </div>
             </div>
-
-
-
-
-            <!-- MODAL form to add garments -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Add Garment</h4>
-                        </div>
-
-                        <div class="modal-body">
-
-                            <!-- New Garment Submission Form -->
-                            <form ng-submit="dash.addNewGarment()">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input ng-model="dash.newGarment.name" class="form-control" placeholder="Green Flannel Shirt">
-                                </div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input ng-model="dash.newGarment.type" type="radio" name="optradio" value="top"> Top
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input ng-model="dash.newGarment.type" type="radio" name="optradio" value="bottom"> Bottom
-                                    </label>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Price</label>
-                                    <input ng-model="dash.newGarment.price" class="form-control" placeholder="30">
-                                </div>
-                                <div class="form-group">
-                                    <label>Quantity</label>
-                                    <input ng-model="dash.newGarment.quantity" class="form-control" placeholder="1">
-                                </div>
-                                <div class="form-group">
-                                    <label>Wears Per Laundry Cycle</label>
-                                    <input ng-model="dash.newGarment.wearsPerCycle" class="form-control" placeholder="3">
-                                </div>
-                                <div class="form-group">
-                                    <label>Add Photo</label>
-                                    <input ng-model="dash.newGarment.photo" type="file"> -or-
-                                    <label class="html-input">Paste HTML</label>
-                                    <input ng-model="dash.newGarment.photo" class="form-control" placeholder="htps://www.google.com" />
-                                </div>
-
-                                <button type="submit" class="modal-btn btn btn-success pull-right" data-toggle="modal" data-target="#myModal">Add item</button>
-                                <button type="button" class="modal-btn btn btn-default pull-right" data-dismiss="modal">Cancel</button>
-
-
-                                <div class="modal-footer">
-
-                                </div>
-                            </form>
-                        </div>
-
-
-
-
-                    </div>
-                </div>
-            </div>
-
         </div>
-
-
-        <!-- TO BE COMPLETED AFTER MIDTERM -->
-        <div class="container module" ng-if="dash.calendarDisplay">
-
-        </div>
-
-        <!-- TO BE COMPLETED AFTER MIDTERM -->
-        <div class="container module" ng-if="dash.weatherDisplay">
-
-        </div>
-
-
-
-
-        <div class="container module" ng-if="dash.getOutfitDisplay">
-            <div class="col-md-3 col-md-offset-1 daily-outfit">
-                <img class="outfit-view" src={{dash.outfitTop.photo}} height="350" width="350"/>
-                <img class="outfit-view" src={{dash.outfitBottom.photo}} height="350" width="350"/>
-            </div>
-        </div>
-
-
-
-
-
 
     </div>
 
 
+    <!-- data-toggle="modal" data-target=".outfit-modal" -->
 
-    <div class="container dash-body">
-    </div>
+
+
 </div>

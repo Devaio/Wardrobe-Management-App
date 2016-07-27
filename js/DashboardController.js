@@ -24,7 +24,7 @@ function dashControl(GarmentFactory) {
 
 	// TO BE COMPLETED AFTER MIDTERM
 	// for now - dummy data generator
-	dash.openCalendar = function() {
+	dash.openWeather = function() {
 		// dash.wardrobeDisplay = false
 		// dash.calendarDisplay = true
 		// dash.weatherDisplay = false
@@ -99,34 +99,10 @@ function dashControl(GarmentFactory) {
 	}
 
 
-	// TO BE IMPLEMENTED
-	dash.openWeather = function() {
-		dash.wardrobeDisplay = false
-		dash.calendarDisplay = false
-		dash.weatherDisplay = true
-		dash.getOutfitDisplay = false
-	}
-
-	// Assigns daily outfit
-	dash.openGetOutfit = function() {
-		dash.wardrobeDisplay = false
-		dash.calendarDisplay = false
-		dash.weatherDisplay = false
-		dash.getOutfitDisplay = true
-
-
-		dash.outfitTop = dash.garmentTops[Math.floor(Math.random()*dash.garmentTops.length)]
-		dash.outfitBottom = dash.garmentBottoms[Math.floor(Math.random()*dash.garmentBottoms.length)]
-
-
-
-
-
-	}
 
 
 	// Add new garment
-	dash.addNewGarment = function(){
+	dash.addNewGarment = function() {
 		new GarmentFactory.Garment(dash.newGarment)
 		dash.newGarment.name = null
 		dash.newGarment.type = null
@@ -138,24 +114,39 @@ function dashControl(GarmentFactory) {
 	}
 
 	// Activates when garment photo is clicked
-	dash.setActiveItem = function(garment){
+	dash.setActiveItem = function(garment) {
 		dash.activeItem = garment
 		dash.showRetire = true
 	}
 
 	// Toggles warn/danger buttons inside garment data modal
-	dash.toggleRetire = function(){
+	dash.toggleRetire = function() {
 		dash.showRetire = !dash.showRetire
 	}
 
 	// Removes garment from wardrobe
-	dash.removeItem = function(){
+	dash.removeItem = function() {
 		dash.garments.splice(dash.garments.indexOf(dash.activeItem), 1)
 		if (dash.garmentTops.indexOf(dash.activeItem) != -1) {
 			dash.garmentTops.splice(dash.garmentTops.indexOf(dash.activeItem), 1)
 		} else {
 			dash.garmentBottoms.splice(dash.garmentBottoms.indexOf(dash.activeItem), 1)
 		}
+	}
+
+	dash.openOutfit = function() {
+		dash.toggleBlacklist = true;
+	}
+
+	dash.openBlacklist = function() {
+		dash.blacklist = true
+	}
+
+
+	// Assigns daily outfit
+	dash.generateOutfit = function() {
+		dash.outfitTop = dash.garmentTops[Math.floor(Math.random() * dash.garmentTops.length)]
+		dash.outfitBottom = dash.garmentBottoms[Math.floor(Math.random() * dash.garmentBottoms.length)]
 	}
 
 }
