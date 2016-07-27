@@ -1,132 +1,210 @@
 /*Nav bar*/
 
 .navbar-brand>img {
-  margin: -25%;
-  margin-left: 10%;
+    margin: -25%;
+    margin-left: 10%;
 }
-
 .header {
-  border-bottom: 1px solid #283018;
-  background: #f0eceb;
-  height: 5%;
+    border-bottom: 1px solid #283018;
+    background: #f0eceb;
+    height: 5%;
 }
-
 .nav-pills>li>a {
-  line-height: 3em;
-  color: #283018;
+    line-height: 3em;
+    font-size: 17px;
+    color: #283018;
 }
-
-.nav-pills>li>a:hover, .nav-pills>li>a:focus  {
-  line-height: 3em;
-  color: #283018;
-  background-color: white;
+.nav-pills>li>a:hover, .nav-pills>li>a:focus {
+    line-height: 3em;
+    color: #283018;
+    background-color: white;
 }
-
 .nav-pills>li.dropdown:hover, .nav-pills>li.dropdown:focus {
-  background-color: white;
+    background-color: white;
 }
 
 
 /*Body*/
 
 body {
-  background-color: #f0eceb;
+    background-color: #f0eceb;
 }
-
 div.container-fluid {
-  padding: 0;
+    padding: 0;
 }
-
-
 div.jumbotron {
-  margin-top: 12%;
-  background-color: rgba(0, 0, 0, 0);
-  color: #f0eceb;
-  font-family: 'Playfair Display', serif;
-  text-shadow: 2px 2px #283018;
+    margin-top: 17%;
+    background-color: rgba(0, 0, 0, 0);
+    color: #f0eceb;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 2px 2px #283018;
 }
-
 .footer {
-  border-top: 1px solid #283018;
-  background: #f0eceb;
-  height: 7em;
+    border-top: 1px solid #283018;
+    background: #f0eceb;
+    height: 7em;
 }
-
+.footer>div>div {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.footer>div>div>p {
+    margin: 1%;
+}
+.footer>div>div>p>a {
+    color: #283018;
+}
+.footer>div>div>p>a:hover {
+    text-decoration: none;
+}
 .green {
-  color: #729f98;
+    color: #729f98;
 }
-
 .yellow {
-  color: #aa863a;
+    color: #aa863a;
+}
+.red {
+    color: red;
 }
 
 
 /*Main page*/
 
 div.container-fluid.main-view {
-  background: url("../assets/background2.png") no-repeat right top fixed;
-  background-size: cover;
-  margin: 0;
-  padding: 0;
-  height: 55em;
+    background: url("../assets/background2.png") no-repeat right top fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 65.2em;
 }
 
 
 /*About page*/
 
 div.container-fluid.about-view {
-  background: url("../assets/tailor.jpeg") no-repeat right top fixed;
-  background-size: cover;
-  margin: 0;
-  padding: 0;
-  height: 55em;
+    background: url("../assets/tailor.jpeg") no-repeat right top fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 65.2em;
 }
 
-/*Profile page*/
 
-div.container-fluid.profile-view {
-  background: url("../assets/clothesline.jpeg") no-repeat center center fixed;
-  background-size: cover;
-  margin: 0;
-  padding: 0;
-  height: 55em;
+/*Dashboard page*/
+
+div.container-fluid.dash-view {
+    /*background: url("../assets/clothesline.jpeg") no-repeat center center fixed;
+  background-size: cover;*/
+    background: white;
+    margin: 0;
+    padding: 0;
+    height: 65.2em;
 }
-
 div.container-fluid.dash-header {
-  background-color: #283018;
-  border-bottom: 1px solid #283018;
-  height: 11%;
-  opacity: .75;
+    background-color: #283018;
+    border-bottom: 1px solid #283018;
+    height: 3.3%;
 }
-
 div.container.dash-body {
-  /*border-left: 1px solid #283018;
-  border-right: 1px solid #283018;*/
-  height: 89%;
+    height: 89%;
 }
-
 div.dash-sub-header {
-  margin: auto;
-  font-size: 20px;
-  color: #f0eceb;
-  text-align: center;
-  line-height: 4em;
+    margin: auto;
+    font-size: 20px;
+    color: #f0eceb;
+    text-align: center;
 }
-
 .dash-nav {
-  color: #f0eceb;
+    color: #f0eceb;
+    cursor: pointer;
 }
-
-.dash-nav:hover  {
-  color: #729f98;
-  text-decoration: none;
+.dash-nav:hover {
+    color: #729f98;
+    text-decoration: none;
 }
-
+.yellow.highlight {
+    color: #aa863a;
+}
 .yellow.highlight:hover {
-  text-decoration: none;
-  color: #729f98;
+    text-decoration: none;
+    color: #729f98;
+}
+div.container.module {
+    margin-top: 3%;
+    height: 57em;
+    background: #f0eceb;
+    overflow: auto;
+
+}
+img.garment {
+    border: 5px solid #283018;
+    margin: 2% 0% 0% 2.33%;
+    display: inline-block;
+    height: 8em;
+    width: 8em;
+    border-radius: 2px;
+    cursor: pointer;
 }
 
+.garment-list {
+    margin: 0;
+    padding: 0;
+}
+
+div.module>ul {
+    list-style: none;
+}
+
+button.add-garment {
+    border: 5px solid #283018;
+    background: white;
+    margin: 1.75% 0% 0% 2.33%;
+    padding: 0;
+    display: inline-block;
+    height: 6.25em;
+    width: 6.25em;
+    border-radius: 2px;
+}
+div.module>button.add-garment:active, div.module>button.add-garment:focus {
+    outline: none;
+}
+
+button.modal-btn {
+  margin-top: 3%;
+  margin-left: 2%;
+}
+
+div.modal-header {
+    margin-bottom: 3.5%;
+    background: #729f98;
+    color: #f0eceb;
+    border-radius: 5px 5px 0px 0px;
+    border-bottom: 1px solid #283018;
+}
+
+div.modal-body {
+    margin-top: 2%;
+}
+
+div.garment-photo>img {
+    margin-bottom: 7%;
+}
+
+div.modal-footer {
+    border: none;
+    padding-bottom: 0;
+}
+
+div.modal-footer>button.remove-garment {
+    position: absolute;
+    right: 3%;
+    bottom: 5%;
+}
+div.modal-footer>button.cancel-retire {
+    position: absolute;
+    right: 20%;
+    bottom: 5%;
+}
 
 
 /*
