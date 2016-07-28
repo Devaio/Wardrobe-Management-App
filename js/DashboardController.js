@@ -5,8 +5,8 @@ function dashControl(GarmentFactory) {
 	console.log("DashboardController loaded")
 	var dash = this
 
-	// TO BE REMOVED AFTER DEVELOPMENT
-	window.dash = dash
+
+	window.dash = dash // REMOVE THIS AFTER DEVELOPMENT
 	dash.photos = garmentFactory.photos
 	dash.garments = GarmentFactory.garments
 	dash.garmentTops = GarmentFactory.garmentTops
@@ -24,11 +24,7 @@ function dashControl(GarmentFactory) {
 
 	// TO BE COMPLETED AFTER MIDTERM
 	// for now - dummy data generator
-	dash.openWeather = function() {
-		// dash.wardrobeDisplay = false
-		// dash.calendarDisplay = true
-		// dash.weatherDisplay = false
-		// dash.getOutfitDisplay = false
+	dash.generateDummy = function() {
 
 		// Garments for wardrobe
 		dash.garment1 = new GarmentFactory.Garment({
@@ -48,7 +44,7 @@ function dashControl(GarmentFactory) {
 			price: 50,
 			quantity: 1,
 			totalWears: 2,
-			wearsPerCycle: 5,
+			wearsPerCycle: 7,
 			wearsThisCycle: 0,
 			photo: "assets/blueJeans.jpeg"
 		})
@@ -81,7 +77,7 @@ function dashControl(GarmentFactory) {
 			price: 10,
 			quantity: 3,
 			totalWears: 50,
-			wearsPerCycle: 5,
+			wearsPerCycle: 3,
 			wearsThisCycle: 2,
 			photo: "assets/blackTee.jpg"
 		})
@@ -92,7 +88,7 @@ function dashControl(GarmentFactory) {
 			price: 40,
 			quantity: 1,
 			totalWears: 66,
-			wearsPerCycle: 5,
+			wearsPerCycle: 7,
 			wearsThisCycle: 2,
 			photo: "assets/brownPants.jpg"
 		})
@@ -134,19 +130,41 @@ function dashControl(GarmentFactory) {
 		}
 	}
 
-	dash.openOutfit = function() {
-		dash.toggleBlacklist = true;
-	}
-
-	dash.openBlacklist = function() {
-		dash.blacklist = true
-	}
-
-
 	// Assigns daily outfit
 	dash.generateOutfit = function() {
 		dash.outfitTop = dash.garmentTops[Math.floor(Math.random() * dash.garmentTops.length)]
 		dash.outfitBottom = dash.garmentBottoms[Math.floor(Math.random() * dash.garmentBottoms.length)]
 	}
+
+	dash.setDailyOutfit = function(){
+		console.log("Daily Outfit Set!")
+		dash.dailyOutfit = {}
+		dash.dailyOutfit.top = dash.outfitTop
+		dash.dailyOutfit.bottom = dash.outfitBottom
+		dash.dailyOutfit.top.wearsThisCycle++
+		dash.dailyOutfit.bottom.wearsThisCycle++
+
+		if (dash.dailyOutfit.top.wearsThisCycle >= dash.dailyOutfit.top.wearsPerCycle) {
+			dash.garmentTops.splice(dash.garmentTops.indexOf(dash.dailyOutfit.top), 1)
+		}
+		if (dash.dailyOutfit.bottom.wearsThisCycle >= dash.dailyOutfit.bottom.wearsPerCycle) {
+			dash.garmentBottoms.splice(dash.garmentBottoms.indexOf(dash.dailyOutfit.bottom), 1)
+		}
+
+		dash.outfitLocked = true
+	}
+
+	dash.toggleOutfitLock = function(){
+		dash.outfitLocked = false
+	}
+
+	dash.grayOut = function (garment) {
+		if (garment.wearsThisCycle >= garment.wearsPerCycle) {
+			return {opacity: 0.4}
+		}
+	}
+
+	dash.nextLaundry = 0
+
 
 }

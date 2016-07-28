@@ -2,11 +2,12 @@
 
 
 
+
     <!-- Populate with photos -->
     <div class="container module">
         <div class="widget-top col-md-9">
             <div class="widget-wardrobe">
-                <img class="garment" ng-repeat="garment in dash.garments track by $index" ng-click="dash.setActiveItem(garment)" src="{{garment.photo}}" data-toggle="modal" data-target="#garmentData" />
+                <img class="garment" ng-repeat="garment in dash.garments track by $index" ng-click="dash.setActiveItem(garment)" src="{{garment.photo}}" data-toggle="modal" data-target="#garmentData" ng-style="dash.grayOut(garment)" />
 
                 <button class="btn btn-lg add-garment glyphicon glyphicon-plus" data-toggle="modal" data-target="#myModal"></button>
             </div>
@@ -15,10 +16,17 @@
         </div>
 
         <div class="widget-top col-md-3">
-            <div ng-click="dash.openOutfit()" class="widget-outfit" data-toggle="modal" data-target=".outfit-modal">
+            <div class="widget-outfit" data-toggle="modal" data-target="#outfitModal">
                 <div>
-                    <img class="outfit-view" src="{{dash.outfitTop.photo}}" />
-                    <img class="outfit-view" src="{{dash.outfitBottom.photo}}" />
+                    <img ng-click="dash.imgDisabled || dash.generateOutfit()" class="outfit-view" src="{{dash.outfitTop.photo}}" />
+                    <img ng-click="dash.imgDisabled || dash.generateOutfit()" class="outfit-view" src="{{dash.outfitBottom.photo}}" />
+                    <div class="text-center checkbox">
+                        <button ng-hide="dash.outfitLocked" ng-click="dash.setDailyOutfit(); dash.imgDisabled = true" class="btn btn-success">Wear This Outfit</button>
+
+
+                        <button ng-show="dash.outfitLocked" ng-click="dash.imgDisabled = false; dash.generateOutfit(); dash.toggleOutfitLock()" class="btn btn-info ">Get Another Outfit</button>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -27,11 +35,30 @@
             <iframe src="https://calendar.google.com/calendar/embed?src=0ffohj0pid08deiej8lav1vkmg%40group.calendar.google.com&ctz=America/Denver" scrolling="no"></iframe>
         </div>
 
-        <div class="widget-bottom col-md-5">
-            <div ng-click="dash.openWeather()" class="widget-weather">
-                <img src="assets/weather.png" class="weather-img" />
+        <div ng-controller="WeatherController as wc" class="widget-bottom col-md-5">
+            <div ng-click="dash.generateDummy()" class="widget-weather">
+                <div class="col-md-6 weather-left">
+                    <h1 class="text-center">{{wc.currentCity}}</h1>
+                    <h5 class="text-center">Wednesday</h5>
+                    <h5 class="text-center">27 Jul, 2016</h5>
+                </div>
+                <div class="col-md-6 weather-right ">
+                    <h1 class="current-temp text-center">{{wc.currentTemp}}°F</h1>
+                    <h5 class="temp text-center">H:{{wc.tempHigh}}°F / L:{{wc.tempLow}}°F</h5>
+                </div>
             </div>
+
+            <div>
+                <div class="widget-laundry">
+                    <h3 class="text-center checkbox">Days until laundry: {{dash.nextLaundry}} days</h3>
+                </div>
+            </div>
+
         </div>
+
+
+
+
 
 
 
@@ -65,7 +92,7 @@
                             </div>
 
                             <div>
-                                <label class="data">Times worn this laundry cycle:</label><span> {{dash.activeItem.wearsThisCycle}}</span>
+                                <label class="data">Times worn this laundry cycle:</label><span> {{dash.activeItem.wearsThisCycle}}/{{dash.activeItem.wearsPerCycle}}</span>
                             </div>
 
                             <div>
@@ -151,6 +178,10 @@
                 </div>
             </div>
         </div>
+
+
+
+
 
     </div>
 
