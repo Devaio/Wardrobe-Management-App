@@ -1,9 +1,11 @@
 angular.module("WardrobeApp")
-	.controller("DashboardController", ["GarmentFactory", dashControl])
+	.controller("DashboardController", ["GarmentFactory", "WeatherFactory", dashControl])
 
-function dashControl(GarmentFactory) {
+function dashControl(GarmentFactory, WeatherFactory) {
 	console.log("DashboardController loaded")
+	console.log("WeatherFactory injected!", WeatherFactory);
 	var dash = this
+	dash.WeatherFactory = WeatherFactory
 
 
 	window.dash = dash // REMOVE THIS AFTER DEVELOPMENT
@@ -13,6 +15,7 @@ function dashControl(GarmentFactory) {
 	dash.garmentBottoms = GarmentFactory.garmentBottoms
 	dash.wardrobeDisplay = true
 
+	dash.nextLaundry = 0
 
 
 	// for now - dummy data generator
@@ -144,19 +147,21 @@ function dashControl(GarmentFactory) {
 	}
 
 
-
 	// Assigns daily outfit
 	dash.generateOutfit = function() {
 
-		dash.outfitTop = dash.garmentTops[Math.floor(Math.random() * dash.garmentTops.length)]
-		dash.outfitBottom = dash.garmentBottoms[Math.floor(Math.random() * dash.garmentBottoms.length)]
+			dash.filteredTops = dash.garmentTops.filter(function(garment) {
+				return garment[dash.WeatherFactory.todayTemp]
+			})
+
+			dash.filteredBottoms = dash.garmentBottoms.filter(function(garment) {
+				return garment[dash.WeatherFactory.todayTemp]
+			})
+
+		dash.outfitTop = dash.filteredTops[Math.floor(Math.random() * dash.filteredTops.length)]
+		dash.outfitBottom = dash.filteredBottoms[Math.floor(Math.random() * dash.filteredBottoms.length)]
 
 	}
-
-
-
-
-
 
 	// Locks in daily outfit, adds to wear count
 	dash.setDailyOutfit = function(){
@@ -194,8 +199,6 @@ function dashControl(GarmentFactory) {
 		}
 	}
 
-	dash.nextLaundry = 0
 
-	// dash.todayTemp = "hot"
 
 }

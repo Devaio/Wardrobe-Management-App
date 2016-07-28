@@ -6,10 +6,8 @@ function garmentFactory() {
 	var garments = []
 
 	var garmentTops = []
-
 	var garmentBottoms = []
 
-	
 	function Garment(garmentInfo) {
 		this.name = garmentInfo.name
 		this.type = garmentInfo.type
@@ -30,6 +28,7 @@ function garmentFactory() {
 			garmentTops.push(this)
 		}
 
+
 		if (this.type == "bottom") {
 			garmentBottoms.push(this)
 		}
@@ -41,7 +40,6 @@ function garmentFactory() {
 		garments: garments,
 		garmentTops: garmentTops,
 		garmentBottoms: garmentBottoms,
-
 
 		Garment: Garment
 	}
