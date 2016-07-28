@@ -228,6 +228,27 @@ label.html-input {
     margin: 1%;
 }
 
+div.garment-weather {
+    text-align: center;
+    height: 6em;
+}
+
+div.garment-weather>label {
+    margin: 4% 0% 0% 0%;
+}
+
+div.garment-weather>div.checkbox {
+    margin: 0% 0% 5% 0%;
+}
+
+div.form-offset {
+    height: 6em;
+}
+
+
+
+
+/*Widgets*/
 iframe {
     margin: 0% 0% 0% .5%;
     border: 3px solid #283018;
@@ -280,11 +301,6 @@ img.outfit-view {
     cursor: pointer;
 }
 
-
-
-button.glyphicon-ok {
-    width: 5em;
-}
 
 div.weather-left {
     height: 100%;

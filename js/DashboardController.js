@@ -13,16 +13,8 @@ function dashControl(GarmentFactory) {
 	dash.garmentBottoms = GarmentFactory.garmentBottoms
 	dash.wardrobeDisplay = true
 
-	// Dashboard navigation
-	dash.openWardrobe = function() {
-		dash.wardrobeDisplay = true
-		dash.calendarDisplay = false
-		dash.weatherDisplay = false
-		dash.getOutfitDisplay = false
-	}
 
 
-	// TO BE COMPLETED AFTER MIDTERM
 	// for now - dummy data generator
 	dash.generateDummy = function() {
 
@@ -30,6 +22,9 @@ function dashControl(GarmentFactory) {
 		dash.garment1 = new GarmentFactory.Garment({
 			name: "Red Flannel Shirt",
 			type: "top",
+			cold: true,
+			moderate: true,
+			hot: false,
 			price: 9,
 			quantity: 1,
 			totalWears: 250,
@@ -41,6 +36,9 @@ function dashControl(GarmentFactory) {
 		dash.garment2 = new GarmentFactory.Garment({
 			name: "Blue Jeans",
 			type: "bottom",
+			cold: true,
+			moderate: true,
+			hot: true,
 			price: 50,
 			quantity: 1,
 			totalWears: 2,
@@ -52,6 +50,9 @@ function dashControl(GarmentFactory) {
 		dash.garment3 = new GarmentFactory.Garment({
 			name: "Blue Flannel Shirt",
 			type: "top",
+			cold: true,
+			moderate: true,
+			hot: false,
 			price: 15,
 			quantity: 1,
 			totalWears: 120,
@@ -63,6 +64,9 @@ function dashControl(GarmentFactory) {
 		dash.garment4 = new GarmentFactory.Garment({
 			name: "Brown Flannel Shirt",
 			type: "top",
+			cold: true,
+			moderate: true,
+			hot: false,
 			quantity: 1,
 			price: 7,
 			totalWears: 37,
@@ -74,6 +78,9 @@ function dashControl(GarmentFactory) {
 		dash.garment5 = new GarmentFactory.Garment({
 			name: "Black Tee Shirt",
 			type: "top",
+			cold: false,
+			moderate: true,
+			hot: true,
 			price: 10,
 			quantity: 3,
 			totalWears: 50,
@@ -85,6 +92,9 @@ function dashControl(GarmentFactory) {
 		dash.garment6 = new GarmentFactory.Garment({
 			name: "Brown Pants",
 			type: "bottom",
+			cold: true,
+			moderate: true,
+			hot: true,
 			price: 40,
 			quantity: 1,
 			totalWears: 66,
@@ -102,6 +112,9 @@ function dashControl(GarmentFactory) {
 		new GarmentFactory.Garment(dash.newGarment)
 		dash.newGarment.name = null
 		dash.newGarment.type = null
+		dash.newGarment.cold = null
+		dash.newGarment.moderate = null
+		dash.newGarment.hot = null
 		dash.newGarment.price = null
 		dash.newGarment.quantity = null
 		dash.wearsPerCycle = null
@@ -130,19 +143,34 @@ function dashControl(GarmentFactory) {
 		}
 	}
 
+
+
 	// Assigns daily outfit
 	dash.generateOutfit = function() {
+
 		dash.outfitTop = dash.garmentTops[Math.floor(Math.random() * dash.garmentTops.length)]
 		dash.outfitBottom = dash.garmentBottoms[Math.floor(Math.random() * dash.garmentBottoms.length)]
+
 	}
 
+
+
+
+
+
+	// Locks in daily outfit, adds to wear count
 	dash.setDailyOutfit = function(){
 		console.log("Daily Outfit Set!")
 		dash.dailyOutfit = {}
 		dash.dailyOutfit.top = dash.outfitTop
 		dash.dailyOutfit.bottom = dash.outfitBottom
-		dash.dailyOutfit.top.wearsThisCycle++
-		dash.dailyOutfit.bottom.wearsThisCycle++
+
+		if (dash.dailyOutfit.top && dash.dailyOutfit.bottom) {
+			dash.dailyOutfit.top.wearsThisCycle++
+			dash.dailyOutfit.top.totalWears++
+			dash.dailyOutfit.bottom.wearsThisCycle++
+			dash.dailyOutfit.bottom.totalWears++
+		}
 
 		if (dash.dailyOutfit.top.wearsThisCycle >= dash.dailyOutfit.top.wearsPerCycle) {
 			dash.garmentTops.splice(dash.garmentTops.indexOf(dash.dailyOutfit.top), 1)
@@ -154,10 +182,12 @@ function dashControl(GarmentFactory) {
 		dash.outfitLocked = true
 	}
 
+	// Toggle for outfit button
 	dash.toggleOutfitLock = function(){
 		dash.outfitLocked = false
 	}
 
+	// Grays out clothing that has been met its wear count this laundry cycle
 	dash.grayOut = function (garment) {
 		if (garment.wearsThisCycle >= garment.wearsPerCycle) {
 			return {opacity: 0.4}
@@ -166,5 +196,6 @@ function dashControl(GarmentFactory) {
 
 	dash.nextLaundry = 0
 
+	// dash.todayTemp = "hot"
 
 }

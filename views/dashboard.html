@@ -1,8 +1,5 @@
 <div ng-controller="DashboardController as dash" class="container-fluid dash-view">
 
-
-
-
     <!-- Populate with photos -->
     <div class="container module">
         <div class="widget-top col-md-9">
@@ -39,8 +36,8 @@
             <div ng-click="dash.generateDummy()" class="widget-weather">
                 <div class="col-md-6 weather-left">
                     <h1 class="text-center">{{wc.currentCity}}</h1>
-                    <h5 class="text-center">Wednesday</h5>
-                    <h5 class="text-center">27 Jul, 2016</h5>
+                    <h5 class="text-center">{{wc.currentDay}}</h5>
+                    <h5 class="text-center">{{wc.currentDate}} {{wc.currentMonth}}, {{wc.currentYear}}</h5>
                 </div>
                 <div class="col-md-6 weather-right ">
                     <h1 class="current-temp text-center">{{wc.currentTemp}}°F</h1>
@@ -55,16 +52,6 @@
             </div>
 
         </div>
-
-
-
-
-
-
-
-
-
-
 
 
         <!-- MODAL for garment ANALYTICS -->
@@ -136,16 +123,32 @@
                                 <input ng-model="dash.newGarment.name" class="form-control" placeholder="Green Flannel Shirt">
                             </div>
 
-                            <div class="radio">
-                                <label>
-                                    <input ng-model="dash.newGarment.type" type="radio" name="optradio" value="top"> Top
-                                </label>
+                            <div class="col-md-3 garment-type" >
+                                <div class="radio">
+                                    <label>
+                                        <input ng-model="dash.newGarment.type" type="radio" name="optradio" value="top"> Top
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input ng-model="dash.newGarment.type" type="radio" name="optradio" value="bottom"> Bottom
+                                    </label>
+                                </div>
                             </div>
-                            <div class="radio">
-                                <label>
-                                    <input ng-model="dash.newGarment.type" type="radio" name="optradio" value="bottom"> Bottom
-                                </label>
+
+                            <div class="col-md-6 garment-weather">
+                                <label>Temperature Range</label>
+                                <div class="checkbox">
+                                    <label class="checkbox-inline"><input type="checkbox" value="cold" ng-model="dash.newGarment.cold"/><50°F</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value="moderate" ng-model="dash.newGarment.moderate"/>50°F-80°F</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value="hot" ng-model="dash.newGarment.hot"/>>80°F</label>
+                                </div>
                             </div>
+
+                            <div class="form-offset">
+
+                            </div>
+
 
                             <div class="form-group">
                                 <label>Price</label>
@@ -180,14 +183,6 @@
         </div>
 
 
-
-
-
     </div>
-
-
-    <!-- data-toggle="modal" data-target=".outfit-modal" -->
-
-
 
 </div>
