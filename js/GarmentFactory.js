@@ -11,9 +11,9 @@ function garmentFactory() {
 	function Garment(garmentInfo) {
 		this.name = garmentInfo.name
 		this.type = garmentInfo.type
-		this.cold = garmentInfo.cold || true
-		this.moderate = garmentInfo.moderate || true
-		this.hot = garmentInfo.hot || true
+		this.cold = garmentInfo.cold || false
+		this.moderate = garmentInfo.moderate || false
+		this.hot = garmentInfo.hot || false
 		this.price = garmentInfo.price || 1.00
 		this.pricePerWear = (garmentInfo.price || 1)/(garmentInfo.totalWears || 1)
 		this.wearsPerCycle = garmentInfo.wearsPerCycle || 1
