@@ -47,7 +47,7 @@
 
             <div>
                 <div class="widget-laundry">
-                    <h3 class="text-center checkbox">Days until laundry: {{dash.nextLaundry}} days</h3>
+                    <h3 ng-click="dash.calculateLaundry()" class="text-center checkbox">Days until laundry: {{dash.nextLaundry}} days</h3>
                 </div>
             </div>
 
@@ -153,10 +153,6 @@
                             <div class="form-group">
                                 <label>Price</label>
                                 <input ng-model="dash.newGarment.price" class="form-control" placeholder="30">
-                            </div>
-                            <div class="form-group">
-                                <label>Quantity</label>
-                                <input ng-model="dash.newGarment.quantity" class="form-control" placeholder="1">
                             </div>
                             <div class="form-group">
                                 <label>Wears Per Laundry Cycle</label>

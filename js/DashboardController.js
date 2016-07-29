@@ -17,7 +17,6 @@ function dashControl(GarmentFactory, WeatherFactory) {
 
 	dash.nextLaundry = 0
 
-
 	// for now - dummy data generator
 	dash.generateDummy = function() {
 
@@ -27,9 +26,8 @@ function dashControl(GarmentFactory, WeatherFactory) {
 			type: "top",
 			cold: true,
 			moderate: true,
-			hot: false,
+			hot: true,
 			price: 9,
-			quantity: 1,
 			totalWears: 250,
 			wearsPerCycle: 5,
 			wearsThisCycle: 4,
@@ -43,7 +41,6 @@ function dashControl(GarmentFactory, WeatherFactory) {
 			moderate: true,
 			hot: true,
 			price: 50,
-			quantity: 1,
 			totalWears: 2,
 			wearsPerCycle: 7,
 			wearsThisCycle: 0,
@@ -55,9 +52,8 @@ function dashControl(GarmentFactory, WeatherFactory) {
 			type: "top",
 			cold: true,
 			moderate: true,
-			hot: false,
+			hot: true,
 			price: 15,
-			quantity: 1,
 			totalWears: 120,
 			wearsPerCycle: 5,
 			wearsThisCycle: 2,
@@ -69,8 +65,7 @@ function dashControl(GarmentFactory, WeatherFactory) {
 			type: "top",
 			cold: true,
 			moderate: true,
-			hot: false,
-			quantity: 1,
+			hot: true,
 			price: 7,
 			totalWears: 37,
 			wearsPerCycle: 5,
@@ -81,14 +76,13 @@ function dashControl(GarmentFactory, WeatherFactory) {
 		dash.garment5 = new GarmentFactory.Garment({
 			name: "Black Tee Shirt",
 			type: "top",
-			cold: false,
+			cold: true,
 			moderate: true,
 			hot: true,
-			price: 10,
-			quantity: 3,
+			price: 5,
 			totalWears: 50,
 			wearsPerCycle: 3,
-			wearsThisCycle: 2,
+			wearsThisCycle: 1,
 			photo: "assets/blackTee.jpg"
 		})
 
@@ -99,16 +93,15 @@ function dashControl(GarmentFactory, WeatherFactory) {
 			moderate: true,
 			hot: true,
 			price: 40,
-			quantity: 1,
 			totalWears: 66,
 			wearsPerCycle: 7,
 			wearsThisCycle: 2,
 			photo: "assets/brownPants.jpg"
 		})
+
+		dash.calculateLaundry() // REMOVE ME AFTER DEMO
+
 	}
-
-
-
 
 	// Add new garment
 	dash.addNewGarment = function() {
@@ -119,21 +112,29 @@ function dashControl(GarmentFactory, WeatherFactory) {
 		dash.newGarment.moderate = null
 		dash.newGarment.hot = null
 		dash.newGarment.price = null
-		dash.newGarment.quantity = null
 		dash.wearsPerCycle = null
 		dash.newGarment.wearsPerCycle = null
 		dash.newGarment.photo = null
+
+		dash.calculateLaundry() // REMOVE ME AFTER DEMO
+
 	}
 
 	// Activates when garment photo is clicked
 	dash.setActiveItem = function(garment) {
 		dash.activeItem = garment
 		dash.showRetire = true
+
+		dash.calculateLaundry() // REMOVE ME AFTER DEMO
+
 	}
 
 	// Toggles warn/danger buttons inside garment data modal
 	dash.toggleRetire = function() {
 		dash.showRetire = !dash.showRetire
+
+		dash.calculateLaundry() // REMOVE ME AFTER DEMO
+
 	}
 
 	// Removes garment from wardrobe
@@ -144,8 +145,10 @@ function dashControl(GarmentFactory, WeatherFactory) {
 		} else {
 			dash.garmentBottoms.splice(dash.garmentBottoms.indexOf(dash.activeItem), 1)
 		}
-	}
 
+		dash.calculateLaundry() // REMOVE ME AFTER DEMO
+
+	}
 
 	// Assigns daily outfit
 	dash.generateOutfit = function() {
@@ -160,6 +163,8 @@ function dashControl(GarmentFactory, WeatherFactory) {
 
 		dash.outfitTop = dash.filteredTops[Math.floor(Math.random() * dash.filteredTops.length)]
 		dash.outfitBottom = dash.filteredBottoms[Math.floor(Math.random() * dash.filteredBottoms.length)]
+
+		dash.calculateLaundry() // REMOVE ME AFTER DEMO
 
 	}
 
@@ -185,11 +190,17 @@ function dashControl(GarmentFactory, WeatherFactory) {
 		}
 
 		dash.outfitLocked = true
+
+		dash.calculateLaundry() // REMOVE ME AFTER DEMO
+
 	}
 
 	// Toggle for outfit button
 	dash.toggleOutfitLock = function(){
 		dash.outfitLocked = false
+
+		dash.calculateLaundry() // REMOVE ME AFTER DEMO
+
 	}
 
 	// Grays out clothing that has been met its wear count this laundry cycle
@@ -199,6 +210,24 @@ function dashControl(GarmentFactory, WeatherFactory) {
 		}
 	}
 
+	// Click to update days until laundry count
+	dash.calculateLaundry = function(){
 
+		// TEMPORARY - TO BE REMOVED
+		dash.totalTopsArray = []
+		dash.totalBottomsArray = []
+		dash.garmentTops.forEach(function(garment) {
+			dash.totalTopsArray.push(garment.wearsPerCycle - garment.wearsThisCycle)
+		})
+
+		dash.totalTops = dash.totalTopsArray.reduce(function(total, num) { return total + num}) || 0
+		dash.garmentBottoms.forEach(function(garment) {
+			dash.totalBottomsArray.push(garment.wearsPerCycle - garment.wearsThisCycle)
+		})
+
+		dash.totalBottoms = dash.totalBottomsArray.reduce(function(total, num) { return total + num}) || 0
+		dash.nextLaundry = Math.min(dash.totalTops, dash.totalBottoms)
+
+	}
 
 }

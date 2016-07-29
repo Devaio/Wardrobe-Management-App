@@ -11,13 +11,12 @@ function garmentFactory() {
 	function Garment(garmentInfo) {
 		this.name = garmentInfo.name
 		this.type = garmentInfo.type
-		this.cold = garmentInfo.cold || false
-		this.moderate = garmentInfo.moderate || false
-		this.hot = garmentInfo.hot || false
-		this.quantity = garmentInfo.quantity || 1
+		this.cold = garmentInfo.cold || true
+		this.moderate = garmentInfo.moderate || true
+		this.hot = garmentInfo.hot || true
 		this.price = garmentInfo.price || 1.00
 		this.pricePerWear = (garmentInfo.price || 1)/(garmentInfo.totalWears || 1)
-		this.wearsPerCycle = garmentInfo.wearsPerCycle || 0
+		this.wearsPerCycle = garmentInfo.wearsPerCycle || 1
 		this.wearsThisCycle = garmentInfo.wearsThisCycle || 0
 		this.totalWears = garmentInfo.totalWears || 0
 		this.photo = garmentInfo.photo || "assets/noImage.png"
@@ -28,12 +27,10 @@ function garmentFactory() {
 			garmentTops.push(this)
 		}
 
-
 		if (this.type == "bottom") {
 			garmentBottoms.push(this)
 		}
 	}
-
 
 
 	return {

@@ -45,6 +45,8 @@ function weatherControl(WeatherFactory) {
     WeatherFactory.tempHigh = wc.tempHigh = (wc.weatherData.main.temp_max * 9/5 - 459.67).toFixed(0)
     WeatherFactory.tempLow = wc.tempLow = (wc.weatherData.main.temp_min * 9/5 - 459.67).toFixed(0)
 
+    WeatherFactory.todayTemp = "moderate"
+
     if (parseInt(dash.WeatherFactory.tempHigh) >= 80) {
   		WeatherFactory.todayTemp = "hot"
   	}
@@ -66,5 +68,6 @@ function weatherControl(WeatherFactory) {
   // wc.currentTemp = 90
   // wc.tempHigh = 95
   // wc.tempLow = 84
+  // WeatherFactory.todayTemp = "hot"
 
 }
